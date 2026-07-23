@@ -24,4 +24,4 @@ def test_divide_by_zero():
 
 
 def test_power_sum():
-    assert divide(4,2) == 20
+    assert power_sum(4,2) == 20
