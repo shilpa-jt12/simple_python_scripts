@@ -4,21 +4,29 @@ pipeline {
 
     stages {
 
-        stage('Checkout') {
-            steps {
-                checkout scm
-            }
-        }
-
         stage('Python Version') {
             steps {
                 bat 'python --version'
             }
         }
 
+        stage('Check Pip') {
+            steps {
+                bat '''
+                python --version
+                python -m pip --version
+                where python
+                '''
+            }
+        }
+
         stage('Install Dependencies') {
             steps {
-                bat 'pip install -r requirements.txt'
+                bat '''
+                dir
+                type requirements.txt
+                python -m pip install -r requirements.txt
+                '''
             }
         }
 
@@ -30,14 +38,12 @@ pipeline {
 
         stage('Run Unit Tests') {
             steps {
-                bat 'pytest'
+                bat 'python -m pytest'
             }
         }
-
     }
 
     post {
-
         success {
             echo 'Pipeline completed successfully.'
         }
@@ -49,7 +55,5 @@ pipeline {
         always {
             echo 'Pipeline execution finished.'
         }
-
     }
-
 }
