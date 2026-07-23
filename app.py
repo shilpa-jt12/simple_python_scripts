@@ -5,3 +5,7 @@ print("Subtraction:", subtract(10, 5))
 print("Multiplication:", multiply(10, 5))
 print("Division:", divide(10, 5))
 print("Power Sum:",power_sum(4,6))
+
+print("###################################################")
+print("successfully completed all the operations...!!!!!!!")
+print("###################################################")
